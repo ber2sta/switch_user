@@ -15,6 +15,7 @@ module SwitchUser
   mattr_writer :view_guard
   mattr_accessor :redirect_path
   mattr_accessor :session_key
+  mattr_accessor :default_scope
 
   def self.setup
     yield self
