@@ -9,6 +9,8 @@ module SwitchUserHelper
       id_name = SwitchUser.available_users_identifiers[scope]
       name = SwitchUser.available_users_names[scope]
 
+      options += "<optgroup label='#{scope}'>" if SwitchUser.available_users.count > 1
+
       user_proc.call.each do |user|
         user_match = (user == current_user)
         options += content_tag(:option,
@@ -16,6 +18,8 @@ module SwitchUserHelper
                                :value => tag_value(user, id_name, scope),
                                :selected => user_match)
       end
+
+      options += "</optgroup>" if SwitchUser.available_users.count > 1
     end
 
     if options.respond_to?(:html_safe)
